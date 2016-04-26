@@ -16,7 +16,7 @@ The following URLs are available:
 # Starting the container
 
 ```sh
-docker run -v "${PWD}/tiles:":/var/www/osm_tiles -p 80:80 alleveenstra/mapproxy
+docker run -v "${PWD}/tiles":/var/www/osm_tiles -p 80:80 alleveenstra/mapproxy
 ```
 
 # Creating pre-rendered tiles
