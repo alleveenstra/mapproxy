@@ -2,17 +2,8 @@ from mpmath import sec, pi, log, tan
 import urllib
 import os
 
-
-def make_dirs(z, x):
-    try:
-        os.stat("%d/" % z)
-    except:
-        os.mkdir("%d/" % z)
-    try:
-        os.stat("%d/%d/" % (z, x))
-    except:
-        os.mkdir("%d/%d/" % (z, x))
-
+# Tileserver pattern
+tileserver_pattern = "http://a.tile.openstreetmap.org/%d/%d/%d.png"
 
 # longitude
 left_x = 2.768555
@@ -25,6 +16,18 @@ right_y = 54.158682
 # Zoomlevels
 zoom_min = 0
 zoom_max = 8
+
+
+def make_dirs(z, x):
+    try:
+        os.stat("%d/" % z)
+    except:
+        os.mkdir("%d/" % z)
+    try:
+        os.stat("%d/%d/" % (z, x))
+    except:
+        os.mkdir("%d/%d/" % (z, x))
+
 
 for zoom in range(zoom_min, zoom_max + 1):
     num_tiles = 2 ** zoom
@@ -46,7 +49,7 @@ for zoom in range(zoom_min, zoom_max + 1):
         for q_y in range(y, Y + 1):
             filename = "%d/%d/%d.png" % (zoom, q_x, q_y)
             if not os.path.isfile(filename):
-                url = "http://a.tile.openstreetmap.org/%d/%d/%d.png" % (zoom, q_x, q_y)
+                url = tileserver_pattern % (zoom, q_x, q_y)
                 make_dirs(zoom, q_x)
                 testfile = urllib.URLopener()
                 testfile.retrieve(url, filename)
