@@ -6,7 +6,7 @@ ENV LANG C.UTF-8
 RUN update-locale LANG=C.UTF-8
 
 RUN apt-get update -y && \
-    apt-get install -y libapache2-mod-wsgi python-pip supervisor apache2 python-dev libgeos-dev libjpeg-dev zlib1g-dev && \
+    apt-get install -y libapache2-mod-wsgi python-pip python-pyproj supervisor apache2 python-dev libgeos-dev libjpeg-dev zlib1g-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
