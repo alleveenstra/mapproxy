@@ -24,3 +24,8 @@ docker run -v "${PWD}/tiles":/var/www/osm_tiles -p 80:80 alleveenstra/mapproxy
 In the subdirectory tiles/ you will find "fetch.py".
 Edit this file to change the parameters found in its top.
 And run it to fetch rendered tiles.
+
+Note that on selinux enabled hosts, mounting the pre-rendered tiles will not work unless you:
+```sh
+su -c "setenforce 0"
+```
