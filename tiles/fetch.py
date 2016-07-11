@@ -1,5 +1,5 @@
 from mpmath import sec, pi, log, tan
-import urllib
+import requests
 import os
 
 # Tileserver pattern
@@ -50,6 +50,9 @@ for zoom in range(zoom_min, zoom_max + 1):
             filename = "%d/%d/%d.png" % (zoom, q_x, q_y)
             if not os.path.isfile(filename):
                 url = tileserver_pattern % (zoom, q_x, q_y)
+                print url, "..."
                 make_dirs(zoom, q_x)
-                testfile = urllib.URLopener()
-                testfile.retrieve(url, filename)
+                response = requests.get(url)
+                if response.status_code == 200:
+                    with open(filename, 'wb') as f:
+                        f.write(response.content)

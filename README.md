@@ -1,4 +1,4 @@
-# Docker container with Mapproxy and Mapnik on apache2
+# Docker container with Mapproxy on apache2
 
 This container runs Apache 2 with Mapproxy configured to working together. It requires pre-rendered tiles.
 
